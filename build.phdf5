@@ -1,0 +1,23 @@
+
+## ==== mpich ====
+## --------------
+echo $PWD
+cd $(basename $MPICH)
+./configure --prefix=$MPICH --disable-cxx
+make && make install
+
+export {CC,CXX}=mpicc {FC,F77,F90,F03}=mpifort
+
+## ==== zlib ====
+## --------------
+cd ../$(basename $ZLIB)
+./configure
+make install prefix=$ZLIB
+
+
+## ==== hdf5 ====
+## --------------
+cd ../$(basename $HDF5)
+./configure --prefix=$HDF5 --disable-static --enable-shared --enable-fortran --enable-parallel \
+--with-zlib=$ZLIB/include,$ZLIB/lib
+make && make install

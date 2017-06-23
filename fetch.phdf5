@@ -1,0 +1,7 @@
+MPICHv=$(basename $MPICH)
+ZLIBv=$(basename $ZLIB)
+HDF5v=$(basename $HDF5)
+wget http://www.mpich.org/static/downloads/3.2/$MPICHv.tar.gz \
+  http://zlib.net/$ZLIBv.tar.gz \
+  https://support.hdfgroup.org/ftp/HDF5/releases/${HDF5v::-2}/$HDF5v/src/$HDF5v.tar.bz2
+tar xzf $MPICHv.tar.gz && tar xzf $ZLIBv.tar.gz && tar xjf $HDF5v.tar.bz2
